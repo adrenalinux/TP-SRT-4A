@@ -1,0 +1,7 @@
+---
+# tasks file for docker-compose
+- hosts: tp-vm
+  vars:
+    rozofs_ui_ip : 127.0.0.1
+  roles:
+    - sensu-client

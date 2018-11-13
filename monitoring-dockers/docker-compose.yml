@@ -1,0 +1,40 @@
+rozofs-rabbit01:
+    image: adrenalinux/rabbitmq:2018-10-24
+    hostname: rabbit01
+    ports:
+        - 5671:5671
+        - 15672:15672
+rozofs-influxdb:
+    image: adrenalinux/influxdb:2018-10-24
+    container_name: dockercompose_influxdb_1
+    ports:
+        - 8083:8083
+        - 8086:8086
+    volumes:
+        - ./influxdb/logs:/var/log/influxdb
+        - influx_data:/var/lib/influxdb
+rozofs-sensu:
+    image: adrenalinux/sensu:2018-11-07
+    mem_limit: 1g
+    cpu_shares: 256
+    environment:
+        - TZ=Europe/Paris
+    ports:
+        - 3000:3000
+        - 4567:4567
+    volumes:
+        - ./sensu_vol/conf:/etc/sensu
+        - ./sensu_vol/logs:/var/log/sensu
+    links:
+        - rozofs-rabbit01
+        - rozofs-influxdb
+rozofs-grafana:
+    image: grafana/grafana
+    ports:
+        - 5555:3000
+    environment:
+        - "GF_SECURITY_ADMIN_PASSWORD=secret"
+    volumes:
+        - grafana-data:/var/lib/grafana
+    links:
+        - rozofs-influxdb

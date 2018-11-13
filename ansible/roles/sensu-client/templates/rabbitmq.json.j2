@@ -1,0 +1,18 @@
+{
+  "rabbitmq": {
+    "ssl": {
+      "cert_chain_file": "/etc/sensu/ssl/cert.pem",
+      "private_key_file": "/etc/sensu/ssl/key.pem"
+    },
+
+    {% if rozofs_ui_ip is defined %}
+    "host": "{{ rozofs_ui_ip }}",
+    {% elif groups['rozofs-ui'] is defined %}
+    "host": "{{ hostvars[groups['rozofs-ui'][0]].ansible_ssh_host }}",
+    {% endif %}
+    "port": {{ rabbitmq_port }},
+    "vhost": "{{ rabbitmq_sensu_vhost }}",
+    "user": "{{ rabbitmq_sensu_user_name }}",
+    "password": "{{ rabbitmq_sensu_password }}"
+  }
+}

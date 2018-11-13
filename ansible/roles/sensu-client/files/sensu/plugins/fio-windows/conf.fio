@@ -1,0 +1,8 @@
+[global]
+ioengine=windowsaio
+rw=readwrite
+size=1g
+directory=C\:\fio
+thread=1
+
+[trivial-readwrite-1g]

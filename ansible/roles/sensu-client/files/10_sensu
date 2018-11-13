@@ -1,0 +1,9 @@
+Defaults:sensu !logfile, !syslog
+sensu ALL=(ALL) NOPASSWD: /usr/sbin/corosync-cfgtool *
+sensu ALL=(ALL) NOPASSWD: /usr/sbin/crm_mon -1 -r -f
+sensu ALL=(ALL) NOPASSWD: /usr/sbin/megacli *
+sensu ALL=(ALL) NOPASSWD: /usr/sbin/smartctl
+sensu ALL=(ALL) NOPASSWD: /usr/sbin/crm_resource *
+sensu ALL=(ALL) NOPASSWD: /usr/sbin/crm_node *
+sensu ALL=(ALL) NOPASSWD: /usr/sbin/crm *
+sensu ALL=(ALL) NOPASSWD: /usr/bin/ctdb *

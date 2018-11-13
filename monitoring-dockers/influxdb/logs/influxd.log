@@ -1,0 +1,136 @@
+ts=2018-11-07T08:59:01.398323Z lvl=info msg="InfluxDB starting" log_id=0BcMBPaW000 version=1.6.4 branch=1.6 commit=c75cdfdfa6f71a08473fefcec71f6cbcbdef1ff4
+ts=2018-11-07T08:59:01.398493Z lvl=info msg="Go runtime" log_id=0BcMBPaW000 version=go1.10.3 maxprocs=2
+ts=2018-11-07T08:59:01.402272Z lvl=info msg="Using data dir" log_id=0BcMBPaW000 service=store path=/var/lib/influxdb/data
+ts=2018-11-07T08:59:01.402484Z lvl=info msg="Compaction settings" log_id=0BcMBPaW000 service=store max_concurrent_compactions=1 throughput_bytes_per_second=50331648 throughput_burst_bytes=50331648
+ts=2018-11-07T08:59:01.402548Z lvl=info msg="Open store (start)" log_id=0BcMBPaW000 service=store trace_id=0BcMBPbW000 op_name=tsdb_open op_event=start
+ts=2018-11-07T08:59:01.402877Z lvl=info msg="Open store (end)" log_id=0BcMBPaW000 service=store trace_id=0BcMBPbW000 op_name=tsdb_open op_event=end op_elapsed=0.331ms
+ts=2018-11-07T08:59:01.402960Z lvl=info msg="Opened service" log_id=0BcMBPaW000 service=subscriber
+ts=2018-11-07T08:59:01.403037Z lvl=info msg="Starting monitor service" log_id=0BcMBPaW000 service=monitor
+ts=2018-11-07T08:59:01.403175Z lvl=info msg="Registered diagnostics client" log_id=0BcMBPaW000 service=monitor name=build
+ts=2018-11-07T08:59:01.403341Z lvl=info msg="Registered diagnostics client" log_id=0BcMBPaW000 service=monitor name=runtime
+ts=2018-11-07T08:59:01.403511Z lvl=info msg="Registered diagnostics client" log_id=0BcMBPaW000 service=monitor name=network
+ts=2018-11-07T08:59:01.403580Z lvl=info msg="Registered diagnostics client" log_id=0BcMBPaW000 service=monitor name=system
+ts=2018-11-07T08:59:01.403856Z lvl=info msg="Starting precreation service" log_id=0BcMBPaW000 service=shard-precreation check_interval=10m advance_period=30m
+ts=2018-11-07T08:59:01.403964Z lvl=info msg="Starting snapshot service" log_id=0BcMBPaW000 service=snapshot
+ts=2018-11-07T08:59:01.404126Z lvl=info msg="Starting continuous query service" log_id=0BcMBPaW000 service=continuous_querier
+ts=2018-11-07T08:59:01.403923Z lvl=info msg="Storing statistics" log_id=0BcMBPaW000 service=monitor db_instance=_internal db_rp=monitor interval=10s
+ts=2018-11-07T08:59:01.404517Z lvl=info msg="Starting HTTP service" log_id=0BcMBPaW000 service=httpd authentication=false
+ts=2018-11-07T08:59:01.404610Z lvl=info msg="opened HTTP access log" log_id=0BcMBPaW000 service=httpd path=stderr
+ts=2018-11-07T08:59:01.404750Z lvl=info msg="Listening on HTTP" log_id=0BcMBPaW000 service=httpd addr=[::]:8086 https=false
+ts=2018-11-07T08:59:01.405054Z lvl=info msg="Starting retention policy enforcement service" log_id=0BcMBPaW000 service=retention check_interval=30m
+ts=2018-11-07T08:59:01.405217Z lvl=info msg="Started listening on UDP" log_id=0BcMBPaW000 service=udp addr=:8090
+ts=2018-11-07T08:59:01.405903Z lvl=info msg="Listening for signals" log_id=0BcMBPaW000
+ts=2018-11-07T08:59:02.393118Z lvl=info msg="Executing query" log_id=0BcMBPaW000 service=query query="CREATE DATABASE sensu"
+[httpd] 127.0.0.1 - - [07/Nov/2018:08:59:02 +0000] "GET /query?q=CREATE+DATABASE+sensu HTTP/1.1" 200 175 "-" "curl/7.58.0" 5f5a18b8-e26b-11e8-8001-000000000000 2041
+ts=2018-11-07T08:59:02.409837Z lvl=info msg="Executing query" log_id=0BcMBPaW000 service=query query="ALTER RETENTION POLICY autogen ON sensu DURATION 5d REPLICATION 1 SHARD DURATION 1d DEFAULT"
+[httpd] 127.0.0.1 - - [07/Nov/2018:08:59:02 +0000] "GET /query?q=ALTER+RETENTION+POLICY+autogen+ON+sensu+DURATION+5d+REPLICATION+1+SHARD+DURATION+1d+DEFAULT HTTP/1.1" 200 101 "-" "curl/7.58.0" 5f5cd02f-e26b-11e8-8002-000000000000 1179
+ts=2018-11-07T08:59:07.966571Z lvl=info msg="Failed to write point batch to database" log_id=0BcMBPaW000 service=udp db_instance=sensu error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+[httpd] 127.0.0.1 - - [07/Nov/2018:08:59:10 +0000] "GET /ping HTTP/1.1" 204 0 "-" "InfluxDBShell/1.6.4" 64087d99-e26b-11e8-8003-000000000000 81
+ts=2018-11-07T08:59:16.610988Z lvl=info msg="Executing query" log_id=0BcMBPaW000 service=query query="SHOW MEASUREMENTS"
+[httpd] 127.0.0.1 - - [07/Nov/2018:08:59:16 +0000] "POST /query?chunked=true&db=&epoch=ns&q=show+measurements HTTP/1.1" 200 89 "-" "InfluxDBShell/1.6.4" 67d3a603-e26b-11e8-8004-000000000000 7465
+ts=2018-11-07T08:59:20.000924Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T08:59:20.001495Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T08:59:21.157487Z lvl=info msg="Executing query" log_id=0BcMBPaW000 service=query query="SHOW DATABASES"
+[httpd] 127.0.0.1 - - [07/Nov/2018:08:59:21 +0000] "POST /query?db=&epoch=ns&q=SHOW+DATABASES HTTP/1.1" 200 108 "-" "InfluxDBShell/1.6.4" 6a89782c-e26b-11e8-8005-000000000000 1585
+ts=2018-11-07T08:59:22.398531Z lvl=info msg="Executing query" log_id=0BcMBPaW000 service=query query="SHOW MEASUREMENTS ON sensu"
+[httpd] 127.0.0.1 - - [07/Nov/2018:08:59:22 +0000] "POST /query?chunked=true&db=sensu&epoch=ns&q=show+measurements HTTP/1.1" 200 57 "-" "InfluxDBShell/1.6.4" 6b46ccdb-e26b-11e8-8006-000000000000 1651
+ts=2018-11-07T08:59:30.001049Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T08:59:30.001677Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T08:59:40.001558Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T08:59:40.001803Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T08:59:50.001969Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T08:59:50.002328Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T08:59:56.284684Z lvl=info msg="Failed to write point batch to database" log_id=0BcMBPaW000 service=udp db_instance=sensu error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:00:00.000910Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:00:00.001176Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:00:07.994215Z lvl=info msg="Failed to write point batch to database" log_id=0BcMBPaW000 service=udp db_instance=sensu error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:00:10.001089Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:00:10.001477Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:00:20.000804Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:00:20.001218Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:00:30.001233Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:00:30.002195Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:00:40.001537Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:00:40.001971Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:00:50.000938Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:00:50.001181Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:00:56.313153Z lvl=info msg="Failed to write point batch to database" log_id=0BcMBPaW000 service=udp db_instance=sensu error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:01:00.000827Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:01:00.001363Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:01:08.021082Z lvl=info msg="Failed to write point batch to database" log_id=0BcMBPaW000 service=udp db_instance=sensu error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:01:10.001731Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:01:10.002070Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:01:20.000941Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:01:20.001197Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:01:30.000881Z lvl=info msg="Failed to create storage" log_id=0BcMBPaW000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:01:30.001159Z lvl=info msg="failed to store statistics" log_id=0BcMBPaW000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:01:38.003595Z lvl=info msg="InfluxDB starting" log_id=0BcMKyKl000 version=1.6.4 branch=1.6 commit=c75cdfdfa6f71a08473fefcec71f6cbcbdef1ff4
+ts=2018-11-07T09:01:38.003833Z lvl=info msg="Go runtime" log_id=0BcMKyKl000 version=go1.10.3 maxprocs=2
+ts=2018-11-07T09:01:38.005737Z lvl=info msg="Using data dir" log_id=0BcMKyKl000 service=store path=/var/lib/influxdb/data
+ts=2018-11-07T09:01:38.006016Z lvl=info msg="Compaction settings" log_id=0BcMKyKl000 service=store max_concurrent_compactions=1 throughput_bytes_per_second=50331648 throughput_burst_bytes=50331648
+ts=2018-11-07T09:01:38.006110Z lvl=info msg="Open store (start)" log_id=0BcMKyKl000 service=store trace_id=0BcMKyLW000 op_name=tsdb_open op_event=start
+ts=2018-11-07T09:01:38.006532Z lvl=info msg="Open store (end)" log_id=0BcMKyKl000 service=store trace_id=0BcMKyLW000 op_name=tsdb_open op_event=end op_elapsed=0.423ms
+ts=2018-11-07T09:01:38.006637Z lvl=info msg="Opened service" log_id=0BcMKyKl000 service=subscriber
+ts=2018-11-07T09:01:38.006716Z lvl=info msg="Starting monitor service" log_id=0BcMKyKl000 service=monitor
+ts=2018-11-07T09:01:38.006785Z lvl=info msg="Registered diagnostics client" log_id=0BcMKyKl000 service=monitor name=build
+ts=2018-11-07T09:01:38.006851Z lvl=info msg="Registered diagnostics client" log_id=0BcMKyKl000 service=monitor name=runtime
+ts=2018-11-07T09:01:38.006950Z lvl=info msg="Registered diagnostics client" log_id=0BcMKyKl000 service=monitor name=network
+ts=2018-11-07T09:01:38.007025Z lvl=info msg="Registered diagnostics client" log_id=0BcMKyKl000 service=monitor name=system
+ts=2018-11-07T09:01:38.007141Z lvl=info msg="Starting precreation service" log_id=0BcMKyKl000 service=shard-precreation check_interval=10m advance_period=30m
+ts=2018-11-07T09:01:38.007253Z lvl=info msg="Starting snapshot service" log_id=0BcMKyKl000 service=snapshot
+ts=2018-11-07T09:01:38.007323Z lvl=info msg="Starting continuous query service" log_id=0BcMKyKl000 service=continuous_querier
+ts=2018-11-07T09:01:38.007408Z lvl=info msg="Starting HTTP service" log_id=0BcMKyKl000 service=httpd authentication=false
+ts=2018-11-07T09:01:38.007479Z lvl=info msg="opened HTTP access log" log_id=0BcMKyKl000 service=httpd path=stderr
+ts=2018-11-07T09:01:38.007585Z lvl=info msg="Listening on HTTP" log_id=0BcMKyKl000 service=httpd addr=[::]:8086 https=false
+ts=2018-11-07T09:01:38.007673Z lvl=info msg="Starting retention policy enforcement service" log_id=0BcMKyKl000 service=retention check_interval=30m
+ts=2018-11-07T09:01:38.007790Z lvl=info msg="Started listening on UDP" log_id=0BcMKyKl000 service=udp addr=:8090
+ts=2018-11-07T09:01:38.008046Z lvl=info msg="Listening for signals" log_id=0BcMKyKl000
+ts=2018-11-07T09:01:38.007266Z lvl=info msg="Storing statistics" log_id=0BcMKyKl000 service=monitor db_instance=_internal db_rp=monitor interval=10s
+ts=2018-11-07T09:01:39.005590Z lvl=info msg="Executing query" log_id=0BcMKyKl000 service=query query="CREATE DATABASE sensu"
+[httpd] 127.0.0.1 - - [07/Nov/2018:09:01:39 +0000] "GET /query?q=CREATE+DATABASE+sensu HTTP/1.1" 200 175 "-" "curl/7.58.0" bcb361c2-e26b-11e8-8001-000000000000 1075
+ts=2018-11-07T09:01:39.013944Z lvl=info msg="Executing query" log_id=0BcMKyKl000 service=query query="ALTER RETENTION POLICY autogen ON sensu DURATION 5d REPLICATION 1 SHARD DURATION 1d DEFAULT"
+[httpd] 127.0.0.1 - - [07/Nov/2018:09:01:39 +0000] "GET /query?q=ALTER+RETENTION+POLICY+autogen+ON+sensu+DURATION+5d+REPLICATION+1+SHARD+DURATION+1d+DEFAULT HTTP/1.1" 200 101 "-" "curl/7.58.0" bcb4b376-e26b-11e8-8002-000000000000 1695
+[httpd] 127.0.0.1 - - [07/Nov/2018:09:01:47 +0000] "GET /ping HTTP/1.1" 204 0 "-" "InfluxDBShell/1.6.4" c1b3800b-e26b-11e8-8003-000000000000 49
+ts=2018-11-07T09:01:49.684991Z lvl=info msg="Executing query" log_id=0BcMKyKl000 service=query query="SHOW DATABASES"
+[httpd] 127.0.0.1 - - [07/Nov/2018:09:01:49 +0000] "POST /query?db=&epoch=ns&q=SHOW+DATABASES HTTP/1.1" 200 108 "-" "InfluxDBShell/1.6.4" c310f8fb-e26b-11e8-8004-000000000000 921
+ts=2018-11-07T09:01:50.000826Z lvl=info msg="Failed to create storage" log_id=0BcMKyKl000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:01:50.001386Z lvl=info msg="failed to store statistics" log_id=0BcMKyKl000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:01:52.952199Z lvl=info msg="Executing query" log_id=0BcMKyKl000 service=query query="SHOW MEASUREMENTS ON sensu"
+[httpd] 127.0.0.1 - - [07/Nov/2018:09:01:52 +0000] "POST /query?chunked=true&db=sensu&epoch=ns&q=show+measurements HTTP/1.1" 200 57 "-" "InfluxDBShell/1.6.4" c5038117-e26b-11e8-8005-000000000000 623
+ts=2018-11-07T09:01:56.363807Z lvl=info msg="Failed to write point batch to database" log_id=0BcMKyKl000 service=udp db_instance=sensu error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:02:00.000807Z lvl=info msg="Failed to create storage" log_id=0BcMKyKl000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:02:00.001439Z lvl=info msg="failed to store statistics" log_id=0BcMKyKl000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:02:08.059557Z lvl=info msg="Failed to write point batch to database" log_id=0BcMKyKl000 service=udp db_instance=sensu error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:02:10.000645Z lvl=info msg="Failed to create storage" log_id=0BcMKyKl000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:02:10.001175Z lvl=info msg="failed to store statistics" log_id=0BcMKyKl000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:02:20.000706Z lvl=info msg="Failed to create storage" log_id=0BcMKyKl000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:02:20.001283Z lvl=info msg="failed to store statistics" log_id=0BcMKyKl000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:02:30.000781Z lvl=info msg="Failed to create storage" log_id=0BcMKyKl000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:02:30.001270Z lvl=info msg="failed to store statistics" log_id=0BcMKyKl000 service=monitor error="database not found: _internal"
+[httpd] 127.0.0.1 - - [07/Nov/2018:09:02:30 +0000] "GET /ping HTTP/1.1" 204 0 "-" "InfluxDBShell/1.6.4" dbaa4ca8-e26b-11e8-8006-000000000000 21
+ts=2018-11-07T09:02:33.184069Z lvl=info msg="Executing query" log_id=0BcMKyKl000 service=query query="SHOW MEASUREMENTS"
+[httpd] 127.0.0.1 - - [07/Nov/2018:09:02:33 +0000] "POST /query?chunked=true&db=&epoch=ns&q=show+measurements HTTP/1.1" 200 89 "-" "InfluxDBShell/1.6.4" dcfe6853-e26b-11e8-8007-000000000000 873
+ts=2018-11-07T09:02:40.001039Z lvl=info msg="Failed to create storage" log_id=0BcMKyKl000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:02:40.001660Z lvl=info msg="failed to store statistics" log_id=0BcMKyKl000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:02:50.000736Z lvl=info msg="Failed to create storage" log_id=0BcMKyKl000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:02:50.001045Z lvl=info msg="failed to store statistics" log_id=0BcMKyKl000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:02:56.233733Z lvl=info msg="Executing query" log_id=0BcMKyKl000 service=query query="SHOW DATABASES"
+[httpd] 127.0.0.1 - - [07/Nov/2018:09:02:56 +0000] "POST /query?db=&epoch=ns&q=SHOW+DATABASES HTTP/1.1" 200 108 "-" "InfluxDBShell/1.6.4" eabb5222-e26b-11e8-8008-000000000000 2081
+ts=2018-11-07T09:02:56.375029Z lvl=info msg="Failed to write point batch to database" log_id=0BcMKyKl000 service=udp db_instance=sensu error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:02:57.178913Z lvl=info msg="Executing query" log_id=0BcMKyKl000 service=query query="SHOW MEASUREMENTS ON sensu"
+[httpd] 127.0.0.1 - - [07/Nov/2018:09:02:57 +0000] "POST /query?chunked=true&db=sensu&epoch=ns&q=show+measurements HTTP/1.1" 200 57 "-" "InfluxDBShell/1.6.4" eb4bb033-e26b-11e8-8009-000000000000 847
+ts=2018-11-07T09:03:00.001653Z lvl=info msg="Failed to create storage" log_id=0BcMKyKl000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:03:00.001990Z lvl=info msg="failed to store statistics" log_id=0BcMKyKl000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:03:02.904853Z lvl=info msg="Executing query" log_id=0BcMKyKl000 service=query query="SHOW DATABASES"
+[httpd] 127.0.0.1 - - [07/Nov/2018:09:03:02 +0000] "POST /query?chunked=true&db=sensu&epoch=ns&q=show+databases HTTP/1.1" 200 108 "-" "InfluxDBShell/1.6.4" eeb56dd5-e26b-11e8-800a-000000000000 569
+ts=2018-11-07T09:03:08.083870Z lvl=info msg="Failed to write point batch to database" log_id=0BcMKyKl000 service=udp db_instance=sensu error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:03:10.000745Z lvl=info msg="Failed to create storage" log_id=0BcMKyKl000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:03:10.001069Z lvl=info msg="failed to store statistics" log_id=0BcMKyKl000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:03:20.000764Z lvl=info msg="Failed to create storage" log_id=0BcMKyKl000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:03:20.001136Z lvl=info msg="failed to store statistics" log_id=0BcMKyKl000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:03:30.000892Z lvl=info msg="Failed to create storage" log_id=0BcMKyKl000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:03:30.001233Z lvl=info msg="failed to store statistics" log_id=0BcMKyKl000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:03:40.000811Z lvl=info msg="Failed to create storage" log_id=0BcMKyKl000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:03:40.001352Z lvl=info msg="failed to store statistics" log_id=0BcMKyKl000 service=monitor error="database not found: _internal"
+ts=2018-11-07T09:03:50.000852Z lvl=info msg="Failed to create storage" log_id=0BcMKyKl000 service=monitor db_instance=_internal error="open /var/lib/influxdb/meta/meta.dbtmp: permission denied"
+ts=2018-11-07T09:03:50.001204Z lvl=info msg="failed to store statistics" log_id=0BcMKyKl000 service=monitor error="database not found: _internal"

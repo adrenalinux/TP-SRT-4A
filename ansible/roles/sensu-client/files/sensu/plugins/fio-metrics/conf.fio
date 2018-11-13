@@ -1,0 +1,7 @@
+[global]
+ioengine=sync
+rw=readwrite
+size=1g
+directory=/tmp/
+thread=1
+[conf-readwrite-1g]

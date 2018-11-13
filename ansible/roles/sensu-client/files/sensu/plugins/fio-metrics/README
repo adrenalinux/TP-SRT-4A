@@ -1,0 +1,4 @@
+
+cp conf.fio fio-check.rb fio-metrics.rb /etc/sensu/plugins/
+cp check-fio.json /etc/sensu/conf.d/
+

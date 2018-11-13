@@ -1,0 +1,40 @@
+---
+# tasks file for installaing docker and docker-compose
+- hosts: tp-vm
+  tasks:
+
+  - name: Install apt-transport-https ca-certificates gnupg2
+    apt: name={{ item }}
+        state=present
+    with_items:
+    - apt-transport-https
+    - ca-certificates
+    - gnupg2
+    - software-properties-common
+    environment: "{{proxy_env}}"
+    
+  - name: Install docker key
+    apt_key: 
+      keyserver: https://download.docker.com/linux/debian/gpg
+      id: 0EBFCD88
+      state: present
+    environment: "{{proxy_env}}"
+
+
+  - name: Install dockerproject.org source list
+    apt_repository: repo=''
+                    state=present
+    environment: '{{proxy_env}}'
+
+  - name: Install docker-engine
+    apt: name=
+         state=
+    environment: "{{proxy_env}}"
+
+  - name: Install docker-compose
+    get_url:
+      url:
+      dest:  
+      mode: '0755'
+    environment: "{{proxy_env}}"
+

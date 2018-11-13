@@ -1,0 +1,7 @@
+tp-vm  ansible_connection=local
+
+[tp-vm]
+tp-vm
+
+[default]
+tp-vm

@@ -1,0 +1,6 @@
+1. Download and install ruby : http://rubyinstaller.org/
+2. Open ruby prompt
+3. gem install sensu-plugin
+4. copy fio-windows content in C:\etc\sensu\plugins\
+5. install fio : http://www.bluestop.org/fio/
+

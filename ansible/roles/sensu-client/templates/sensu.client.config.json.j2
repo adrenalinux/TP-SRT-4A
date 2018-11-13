@@ -1,0 +1,16 @@
+{
+   "client": {
+      "name": "{{ ansible_hostname }}",
+      "address": "localhost",
+      "keepalive": {
+        "thresholds": {
+          "warning": {{ sensu_client_keepalive_warning }},
+          "critical": {{ sensu_client_keepalive_critical }}
+        }
+      },
+      "subscriptions": 
+      [
+        "linux"
+      ]
+   }
+}

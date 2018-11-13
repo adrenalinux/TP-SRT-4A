@@ -1,0 +1,14 @@
+---
+pkg_state: present
+
+sensu_client_hostname: "localhost"
+sensu_client_address: "127.0.0.1"
+sensu_client_keepalive_warning: 200
+sensu_client_keepalive_critical: 250
+
+# RabbitMQ server properties
+# rabbitmq_host:
+rabbitmq_port: 5671
+rabbitmq_sensu_vhost: /sensu
+rabbitmq_sensu_user_name: sensu
+rabbitmq_sensu_password: password

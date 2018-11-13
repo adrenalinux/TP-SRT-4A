@@ -1,0 +1,11 @@
+{
+  "checks": {
+    "write-speed": {
+      "command": "/etc/sensu/plugins/fio-check.rb",
+      "subscribers": [
+        "all"
+      ],
+      "interval": 180
+    }
+  }
+}
