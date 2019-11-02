@@ -10,6 +10,7 @@
     - apt-transport-https
     - ca-certificates
     - gnupg2
+    - gnupg-curl
     - software-properties-common
     environment: "{{proxy_env}}"
     
