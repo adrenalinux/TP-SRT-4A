@@ -98,5 +98,14 @@
 - name: add sensu user to sudoers for sensu checks
   copy: src=10_sensu dest=/etc/sudoers.d/10_sensu owner=root group=root mode=0440
 
+- name: install sensu docker plugins
+  shell: "sensu-install -p sensu-plugins-docker"
+
+- name: Add the user 'sensu' to group docker
+  user:
+    name: sensu
+    groups: docker
+    append: yes
+
 - name: start sensu-client service
   service: name=sensu-client state=restarted enabled=yes
