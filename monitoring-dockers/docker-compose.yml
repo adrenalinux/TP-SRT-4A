@@ -1,40 +1,68 @@
-rozofs-rabbit01:
-    image: adrenalinux/rabbitmq:2018-10-24
-    hostname: rabbit01
-    ports:
-        - 5671:5671
-        - 15672:15672
-rozofs-influxdb:
-    image: adrenalinux/influxdb:2018-10-24
-    container_name: dockercompose_influxdb_1
-    ports:
-        - 8083:8083
-        - 8086:8086
-    volumes:
-        - ./influxdb/logs:/var/log/influxdb
-        - influx_data:/var/lib/influxdb
-rozofs-sensu:
-    image: adrenalinux/sensu:2018-11-07
-    mem_limit: 1g
-    cpu_shares: 256
-    environment:
-        - TZ=Europe/Paris
-    ports:
-        - 3000:3000
-        - 4567:4567
-    volumes:
-        - ./sensu_vol/conf:/etc/sensu
-        - ./sensu_vol/logs:/var/log/sensu
-    links:
-        - rozofs-rabbit01
-        - rozofs-influxdb
-rozofs-grafana:
-    image: grafana/grafana
-    ports:
-        - 5555:3000
-    environment:
-        - "GF_SECURITY_ADMIN_PASSWORD=secret"
-    volumes:
-        - grafana-data:/var/lib/grafana
-    links:
-        - rozofs-influxdb
+version: '3.7'
+services:
+
+    prometheus:
+        image: quay.io/prometheus/prometheus:v2.19.1
+        volumes:
+            - prometheus_etc:/etc/prometheus
+            - prometheus_data:/prometheus
+            # - ./prometheus/etc/blackbox:/etc/prometheus/blackbox
+            # - ./prometheus/etc/netdata:/etc/prometheus/netdata
+            # - ./alertmanager/alert.rules/alerts.rules.yml:/alertmanager/alert.rules/alerts.rules.yml
+        ports:
+            - "9090:9090"
+        command:
+            - '--storage.tsdb.path=/prometheus'
+            - '--storage.tsdb.retention.time=30d'
+            - '--config.file=/etc/prometheus/prometheus.yml'
+
+    grafana:
+        image: grafana/grafana:latest
+        ports:
+            - "5555:3000"
+        user: "0"
+        environment:
+            - "GF_SECURITY_ADMIN_PASSWORD__FILE=/run/secrets/my_secret"
+            - "GF_LOG_FILTERS=rendering:debug"
+        volumes:
+            #- ./grafana/data:/var/lib/grafana
+            #- ./grafana/etc:/etc/grafana/provisioning/
+            - grafana_data:/var/lib/grafana
+            - grafana_etc:/etc/grafana/provisioning
+        secrets:
+            - my_secret
+        links:
+            - prometheus
+        depends_on:
+            - prometheus
+
+
+volumes:
+    prometheus_etc:
+        driver: local
+        driver_opts:
+            o: bind
+            type: none
+            device: $PWD/prometheus/etc/
+    prometheus_data:
+        driver: local
+        driver_opts:
+            o: bind
+            type: none
+            device: $PWD/prometheus/data/
+    grafana_etc:
+        driver: local
+        driver_opts:
+            o: bind
+            type: none
+            device: $PWD/grafana/etc/
+    grafana_data:
+        driver: local
+        driver_opts:
+            o: bind
+            type: none
+            device: $PWD/grafana/data/
+
+secrets:
+  my_secret:
+    file: ./my_secret.txt

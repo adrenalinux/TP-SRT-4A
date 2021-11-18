@@ -1,0 +1,30 @@
+---
+# tasks file for installing netdata
+- hosts: tp-vm
+  sudo: yes
+  tasks:
+
+  - name: Check si le fichier netdata est déjà présent
+    stat: 
+      path: /tmp/kickstart-static64.sh
+    register: netdata_file # enregistrement de la valeur dans la variable
+  
+  - name: Téléchargement de Netdata si non installé
+    get_url:
+      # url: https://my-netdata.io/kickstart-static64.sh
+      url: https://raw.githubusercontent.com/netdata/netdata/v1.20.0/packaging/installer/kickstart-static64.sh
+      dest: /tmp/kickstart-static64.sh
+      mode: 0700                        # rend le script executable
+      validate_certs: False
+    when: netdata_file.stat.exists == False
+    environment: "{{proxy_env}}"
+  
+  - name: Installation ou mise à jour de Netdata
+    shell: /tmp/kickstart-static64.sh --dont-wait --disable-telemetry
+    args:
+      executable: /bin/sh
+    register: shell_result
+    when: netdata_file.stat.exists == False
+
+
+
